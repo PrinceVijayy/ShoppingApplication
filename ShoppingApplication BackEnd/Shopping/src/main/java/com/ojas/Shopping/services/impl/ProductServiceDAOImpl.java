@@ -87,4 +87,10 @@ public class ProductServiceDAOImpl implements ProductServiceDAO {
         }
         imageRepository.save(image);
     }
+
+    public byte[] downloadImage(String fileName){
+        Optional<Image> dbImageData = imageRepository.findByName(fileName);
+        byte[] images=dbImageData.get().getImage();
+        return images;
+    }
 }

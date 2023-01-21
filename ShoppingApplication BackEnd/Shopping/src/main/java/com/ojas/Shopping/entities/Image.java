@@ -13,14 +13,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Image {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
     private String name;
     @Column(name = "type")
     private String type;
     @Lob
-    @Column(name = "image")
+    @Column(name = "image",length = 1000)
     private byte[] image;
     @OneToOne(mappedBy = "image",cascade = CascadeType.ALL)
     private Product product;

@@ -6,6 +6,9 @@ import com.ojas.Shopping.services.impl.ProductServiceDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,11 +26,14 @@ public class ProductController {
 
     }
 
-    @PostMapping("/hello")
-    public void hello(@RequestParam MultipartFile file) {
-        productServiceDAO.uploadImage(file);
-    }
+    @GetMapping("view/{fileName}")
+    public ResponseEntity<?> downloadImage(@PathVariable String fileName){
+        byte[] imageData=productServiceDAO.downloadImage(fileName);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf("image/png"))
+                .body(imageData);
 
+    }
     @GetMapping("/list")
     public List<Product> viewAllProducts() {
         return productServiceDAO.getAllProducts();
