@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import ProductServices from "../services/ProductServices";
 
 function CreateProduct() {
   const [file, setFile] = useState(null);
   const [productModel, setProductModel] = useState({
     name: "",
-    price: "",
-    quantity: "",
+    price: 0.0,
+    quantity: 0,
     description: "",
   });
 
@@ -26,9 +27,7 @@ function CreateProduct() {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("product", JSON.stringify(productModel));
-    axios
-      .post("http://localhost:8081/api/create", formData)
-      .then((res) => {
+    ProductServices.createProduct(formData).then((res) => {
         console.log(res);
         alert("Product created successfully!");
       })
