@@ -1,6 +1,5 @@
 package com.ojas.Shopping.models;
 
-import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

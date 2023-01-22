@@ -3,6 +3,8 @@ package com.ojas.Shopping.controllers;
 import com.ojas.Shopping.entities.Product;
 import com.ojas.Shopping.models.ProductModel;
 import com.ojas.Shopping.services.impl.ProductServiceDAOImpl;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -17,6 +19,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/api/product")
 public class ProductController {
     private final ProductServiceDAOImpl productServiceDAO;
 
@@ -45,7 +48,10 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public void createProduct(@RequestPart MultipartFile file,
+    @ApiOperation(value = "Creates a Product",
+    notes = "It will create a product which has a image in it and add it to the database",
+    response = void.class)
+    public void createProduct(@ApiParam(value = "this is an image file") @RequestPart MultipartFile file,
                               @RequestParam(value = "product") String productModel) {
         System.out.println(productModel);
         JSONObject jsonObject;
