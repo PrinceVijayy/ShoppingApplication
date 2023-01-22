@@ -1,37 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import ProductServices from '../services/ProductServices';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
-function GetProduct({ fileName }) {
-  const [imageData, setImageData] = useState(null);
-  fileName="spider.png";
+function ImageViewer() {
+  const [products, setProducts] = useState();
 
   useEffect(() => {
-    async function fetchImageData() {
-      try {
-        const response = await ProductServices.getProduct(fileName);
-        setImageData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchImageData();
-  }, [fileName]);
-
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = 'data:image/png;base64,' + imageData;
-    link.download = fileName;
-    link.click();
-  };
+    axios
+      .get("http://localhost:8081/product/data/spiderman.png")
+      .then((response) => {
+        setProducts(response.data.baseUrl);
+        console.log(response.data);
+      });
+  }, []);
 
   return (
-    <div>
-      {imageData && (
-        <img src={'data:image/png;base64,' + imageData} alt={fileName} />
-      )}
-      <button onClick={handleDownload}>Download</button>
-    </div>
+    <div>{<img src={`data:image/png;base64,${products}`} alt="hidsaaj" />}</div>
   );
 }
 
-export default GetProduct;
+export default ImageViewer;

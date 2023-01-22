@@ -1,4 +1,4 @@
-package com.ojas.Shopping.models;
+package com.ojas.Shopping.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserModel {
+public class CustomerDTO {
 
     private Long id;
     private String username;

@@ -6,7 +6,7 @@ import GetProduct from './pages/GetProduct';
 function App() {
   return (
     <div className="App">
-      <CreateProduct />
+      {/* <CreateProduct /> */}
       <GetProduct />
     </div>
   );
