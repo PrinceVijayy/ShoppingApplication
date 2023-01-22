@@ -25,6 +25,7 @@ import java.util.Collections;
 ApiOperation
 ApiParam
 ApiModel
+ApiModelProperty
  */
 @Configuration
 @EnableSwagger2
@@ -34,7 +35,7 @@ public class SwaggerConfiguration {
     public Docket postsApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .paths(PathSelectors.ant("/api/product/*"))
+                .paths(PathSelectors.ant("/product/*"))
                 .apis(RequestHandlerSelectors.basePackage("com.ojas"))
                 .build()
                 .apiInfo(apiDetails());
