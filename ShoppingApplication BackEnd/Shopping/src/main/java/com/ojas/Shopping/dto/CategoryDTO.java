@@ -10,7 +10,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryDTO {
-    private Long id;
     private String name;
 
 }
