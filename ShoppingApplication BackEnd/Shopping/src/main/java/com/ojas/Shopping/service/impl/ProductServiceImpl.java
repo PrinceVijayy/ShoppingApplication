@@ -8,12 +8,13 @@ import com.ojas.Shopping.repository.ProductRepository;
 import com.ojas.Shopping.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.*;
 
-@Repository
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
@@ -28,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
         return Collections.EMPTY_LIST;
     }
 
-    @Override
+
     public ProductDTO getProductById(Long id) {
         return null;
     }
@@ -65,17 +66,16 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
-    @Override
+
     public ProductDTO updateProduct(ProductDTO productDTO) {
         return null;
     }
 
-    @Override
+
     public void deleteProduct(Long id) {
 
     }
 
-    @Override
     public byte[] downloadImage(String fileName) {
         Image image= imageRepository.findByFileName(fileName);
         return image.getImageData();

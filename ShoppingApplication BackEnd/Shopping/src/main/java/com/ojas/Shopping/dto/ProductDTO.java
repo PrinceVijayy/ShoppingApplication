@@ -10,7 +10,6 @@ import java.util.Set;
  @NoArgsConstructor
  @AllArgsConstructor
  public class ProductDTO {
-     private Long id;
      private String name;
      private Double price;
      private Integer quantity;

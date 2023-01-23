@@ -32,11 +32,11 @@ ApiModelProperty
 public class SwaggerConfiguration {
 
     @Bean
-    public Docket postsApi() {
+    public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .paths(PathSelectors.ant("/product/*"))
-                .apis(RequestHandlerSelectors.basePackage("com.ojas"))
+                .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.ojas.Shopping"))
                 .build()
                 .apiInfo(apiDetails());
 

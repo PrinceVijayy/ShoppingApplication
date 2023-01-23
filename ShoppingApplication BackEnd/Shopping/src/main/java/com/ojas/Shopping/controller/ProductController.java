@@ -29,8 +29,8 @@ public class ProductController {
 
 
     @PostMapping("/create")
-    public void createProduct( @RequestPart MultipartFile file,
-                              @RequestParam(value = "product") String productDTO) {
+    public String createProduct(@RequestPart MultipartFile file,
+                                @RequestParam(value = "product") String productDTO) {
         System.out.println(productDTO);
         JSONObject jsonObject;
         try {
@@ -49,16 +49,16 @@ public class ProductController {
             throw new RuntimeException(e);
         }
         System.out.println(productDTO1);
-        productService.createProduct(file, productDTO1);
+        return productService.createProduct(file, productDTO1);
     }
 
     @GetMapping("/data/{filename}")
-    public Map<String,String> getImage(@PathVariable String filename){
-        byte[] data=productService.downloadImage(filename);
-       String baseString = Base64.getEncoder().encodeToString(data);
-        Map<String,String> filedata =new HashMap<>();
-       filedata.put("baseUrl",baseString);
-       return filedata;
+    public Map<String, String> getImage(@PathVariable String filename) {
+        byte[] data = productService.downloadImage(filename);
+        String baseString = Base64.getEncoder().encodeToString(data);
+        Map<String, String> filedata = new HashMap<>();
+        filedata.put("baseUrl", baseString);
+        return filedata;
     }
 
     @DeleteMapping("/delete/{id}")
