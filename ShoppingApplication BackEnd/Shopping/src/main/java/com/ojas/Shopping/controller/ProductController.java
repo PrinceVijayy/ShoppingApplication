@@ -2,6 +2,7 @@ package com.ojas.Shopping.controller;
 
 import com.ojas.Shopping.dto.CategoryDTO;
 import com.ojas.Shopping.dto.ProductDTO;
+import com.ojas.Shopping.model.ProductModel;
 import com.ojas.Shopping.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -23,7 +24,7 @@ public class ProductController {
     }
 
     @GetMapping("/list")
-    public List<ProductDTO> viewAllProducts() {
+    public List<ProductModel> viewAllProducts() {
         return productService.getAllProducts();
     }
 

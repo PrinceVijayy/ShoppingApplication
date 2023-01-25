@@ -1,7 +1,7 @@
 package com.ojas.Shopping.service.impl;
 
 import com.ojas.Shopping.dto.CustomerDTO;
-import com.ojas.Shopping.entity.Customer;
+import com.ojas.Shopping.entity.CustomerEntity;
 import com.ojas.Shopping.repository.CustomerRepository;
 import com.ojas.Shopping.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     public String registerCustomer(CustomerDTO customerDTO) {
-        Customer customer=new Customer();
+        CustomerEntity customer=new CustomerEntity();
         customer.setFirstName(customerDTO.getFirstName());
         customer.setLastName(customerDTO.getLastName());
         customer.setDateOfBirth(customerDTO.getDateOfBirth());

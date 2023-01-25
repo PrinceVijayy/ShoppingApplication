@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import ProductServices from "../services/ProductServices";
 
 function CreateProduct() {
@@ -9,6 +8,7 @@ function CreateProduct() {
     price: 0.0,
     quantity: 0,
     description: "",
+    category:""
   });
 
   const handleFileChange = (e) => {
@@ -67,6 +67,13 @@ function CreateProduct() {
         value={productModel.description}
         onChange={handleProductModelChange}
         placeholder="Product Description"
+      />
+       <input
+        type="text"
+        name="category"
+        value={productModel.category}
+        onChange={handleProductModelChange}
+        placeholder="Product Category"
       />
       <button type="submit">Create Product</button>
     </form>

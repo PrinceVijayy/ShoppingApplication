@@ -15,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @ApiModel
-public class Image {
+public class ImageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,5 +31,5 @@ public class Image {
     private byte[] imageData;
 
     @OneToOne(mappedBy = "image")
-    private Product product;
+    private ProductEntity product;
 }

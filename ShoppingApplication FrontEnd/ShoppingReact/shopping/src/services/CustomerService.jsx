@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl="http://localhost:8081/customer"
+const baseUrl="http://192.168.2.145:8081/shopping/customer"
 
 class CustomerService{
 
