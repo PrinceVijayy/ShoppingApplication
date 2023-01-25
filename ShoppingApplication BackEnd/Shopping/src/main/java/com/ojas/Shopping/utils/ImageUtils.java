@@ -2,6 +2,7 @@ package com.ojas.Shopping.utils;
 
 
 import java.io.ByteArrayOutputStream;
+import java.util.Base64;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
@@ -43,6 +44,10 @@ public class ImageUtils {
         } catch (Exception ignored) {
         }
         return outputStream.toByteArray();
+    }
+
+    public static  String imageToBase64(byte[] imagedata){
+        return Base64.getEncoder().encodeToString(imagedata);
     }
 
 }
