@@ -28,6 +28,11 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/view/{id}")
+    public ProductModel viewProduct(@PathVariable Long id){
+        return productService.getProductById(id);
+    }
+
 
     @PostMapping("/create")
     public String createProduct(@RequestPart MultipartFile file,
@@ -50,21 +55,39 @@ public class ProductController {
             throw new RuntimeException(e);
         }
         System.out.println(productDTO1);
-        return productService.createProduct(file, productDTO1);
+        if(productService.createProduct(file, productDTO1)==1){
+            return "Successfully Created";
+        }else return "Failed to Create";
     }
 
-    @GetMapping("/data/{filename}")
-    public Map<String, String> getImage(@PathVariable String filename) {
-        byte[] data = productService.downloadImage(filename);
-        String baseString = Base64.getEncoder().encodeToString(data);
-        Map<String, String> filedata = new HashMap<>();
-        filedata.put("baseUrl", baseString);
-        return filedata;
+    @PostMapping("/update")
+    public String updateProduct(@RequestPart MultipartFile file,
+                                @RequestParam(value = "product") String productDTO) {
+        System.out.println(productDTO);
+        JSONObject jsonObject;
+        try {
+            jsonObject = new JSONObject(productDTO);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        ProductDTO productDTO1 = new ProductDTO();
+        try {
+            productDTO1.setName(jsonObject.getString("name"));
+            productDTO1.setPrice(jsonObject.getDouble("price"));
+            productDTO1.setQuantity(jsonObject.getInt("quantity"));
+            productDTO1.setDescription(jsonObject.getString("description"));
+            productDTO1.setCategory(jsonObject.getString("category"));
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(productDTO1);
+        if(productService.updateProduct(file, productDTO1)==1){
+            return "Successfully Updated";
+        }else return "Failed to Update";
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteProductById(@PathVariable Long id) {
         productService.deleteProduct(id);
     }
-
 }
