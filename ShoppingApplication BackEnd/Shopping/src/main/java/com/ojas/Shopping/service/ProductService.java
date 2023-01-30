@@ -9,13 +9,12 @@ import java.util.List;
 public interface ProductService {
 
     public List<ProductModel> getAllProducts();
-    public ProductDTO getProductById(Long id) ;
-    public String createProduct(MultipartFile file, ProductDTO productDTO) ;
+    public ProductModel getProductById(Long id) ;
+    public int createProduct(MultipartFile file, ProductDTO productDTO) ;
 
-    public ProductDTO updateProduct(ProductDTO productDTO);
+    public int updateProduct(MultipartFile file, ProductDTO productDTO);
 
-    public void deleteProduct(Long id) ;
+    public int deleteProduct(Long id) ;
 
-    public byte[] downloadImage(String fileName) ;
 
 }

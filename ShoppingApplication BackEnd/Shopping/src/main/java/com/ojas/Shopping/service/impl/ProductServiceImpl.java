@@ -51,12 +51,28 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
-    public ProductDTO getProductById(Long id) {
-        return null;
+
+    public ProductModel getProductById(Long id) {
+        ProductEntity p = productRepository.findById(id).get();
+        ProductModel productModel=new ProductModel();
+        productModel.setId(p.getId());
+        productModel.setName(p.getName());
+        productModel.setDescription(p.getDescription());
+        productModel.setQuantity(p.getQuantity());
+        productModel.setPrice(p.getPrice());
+        productModel.setCategory(p.getCategory());
+        ImageModel imageModel=new ImageModel();
+        imageModel.setFileName(p.getImage().getFileName());
+        imageModel.setFileType(p.getImage().getFileType());
+        imageModel.setImageInBase64(
+                ImageUtils.imageToBase64(p.getImage().getImageData())
+        );
+        productModel.setImage(imageModel);
+        return productModel;
     }
 
 
-    public String createProduct(MultipartFile file, ProductDTO productDTO)  {
+    public int createProduct(MultipartFile file, ProductDTO productDTO)  {
         System.out.println("service top");
         ProductEntity productEntity =new ProductEntity();
         productEntity.setName(productDTO.getName());
@@ -81,25 +97,52 @@ public class ProductServiceImpl implements ProductService {
         product.setCategories(categories);*/
         try {
             productRepository.save(productEntity);
-            return "Successfully Created";
+            return 1;
         } catch (Exception e) {
-            return "Failed To Create";
+            return 0;
         }
     }
 
 
-    public ProductDTO updateProduct(ProductDTO productDTO) {
-        return null;
+    public int updateProduct(MultipartFile file, ProductDTO productDTO) {
+        System.out.println("service top");
+        ProductEntity productEntity =new ProductEntity();
+        productEntity.setName(productDTO.getName());
+        productEntity.setPrice(productDTO.getPrice());
+        productEntity.setDescription(productDTO.getDescription());
+        productEntity.setQuantity(productDTO.getQuantity());
+        ImageEntity imageEntity = new ImageEntity();
+        imageEntity.setFileName(file.getOriginalFilename());
+        imageEntity.setFileType(file.getContentType());
+        try {
+            imageEntity.setImageData(file.getBytes());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        productEntity.setImage(imageEntity);
+        productEntity.setCategory(productDTO.getCategory());
+        /*Set<Category> categories=new HashSet<>();
+        for (CategoryDTO c: productDTO.getCategories()) {
+            Category category=new Category();
+            category.setName(c.getName());
+        }
+        product.setCategories(categories);*/
+        try {
+            productRepository.save(productEntity);
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
+    public int deleteProduct(Long id) {
+        try {
+            productRepository.deleteById(id);
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
 
-    public void deleteProduct(Long id) {
-
-    }
-
-    public byte[] downloadImage(String fileName) {
-        ImageEntity imageEntity = imageRepository.findByFileName(fileName);
-        return imageEntity.getImageData();
     }
 
 
