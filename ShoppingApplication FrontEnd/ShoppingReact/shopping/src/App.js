@@ -5,13 +5,15 @@ import RegistorCustomer from "./pages/RegistorCustomer";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductList from "./pages/ProductList";
+import ProductDataTable from "./pages/ProductDataTable";
 function App() {
   return (
     <div className="App">
       {/* <CreateProduct /> */}
       {/* <GetProduct /> */}
       {/* <RegistorCustomer /> */}
-      <ProductList />
+      {/* <ProductList /> */}
+    <ProductDataTable />
     </div>
   );
 }
