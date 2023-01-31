@@ -1,6 +1,6 @@
 package com.ojas.Shopping.service;
 
-import com.ojas.Shopping.entity.User;
+import com.ojas.Shopping.entity.UserEntity;
 import com.ojas.Shopping.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,10 +13,10 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user= userRepository.findByUserName(username);
-        if(null==user){
+        UserEntity userEntity = userRepository.findByUserName(username);
+        if(null== userEntity){
             throw new UsernameNotFoundException("User Not Found With The Given Username : "+username);
         }
-        return user;
+        return userEntity;
     }
 }
