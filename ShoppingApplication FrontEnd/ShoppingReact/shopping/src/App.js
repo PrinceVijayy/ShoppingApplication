@@ -5,7 +5,9 @@ import RegistorCustomer from "./pages/RegistorCustomer";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductList from "./pages/ProductList";
+
 import AdminProductList from "./pages/AdminProductList";
+
 function App() {
   return (
     <div className="App">
@@ -13,7 +15,9 @@ function App() {
       {/* <GetProduct /> */}
       {/* <RegistorCustomer /> */}
       {/* <ProductList /> */}
+
       <AdminProductList />
+
     </div>
   );
 }
