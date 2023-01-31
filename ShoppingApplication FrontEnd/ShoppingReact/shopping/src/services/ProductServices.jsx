@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl="http://192.168.2.145:8081/shopping/product"
+const baseUrl="http://localhost:8081/shopping/product"
 class ProductServices {
   getAllProducts(){
     return axios.get(baseUrl+"/list");

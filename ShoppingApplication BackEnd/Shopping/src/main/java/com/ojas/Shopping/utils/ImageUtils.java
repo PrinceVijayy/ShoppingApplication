@@ -1,6 +1,9 @@
 package com.ojas.Shopping.utils;
 
 
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.io.ByteArrayOutputStream;
 import java.util.Base64;
 import java.util.zip.Deflater;
