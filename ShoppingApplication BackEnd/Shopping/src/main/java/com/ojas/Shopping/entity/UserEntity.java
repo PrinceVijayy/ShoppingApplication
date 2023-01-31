@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User implements UserDetails {
+public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class User implements UserDetails {
             , joinColumns = @JoinColumn(referencedColumnName = "id")
             , inverseJoinColumns = @JoinColumn(referencedColumnName = "id")
     )
-    private List<Authority> authorities;
+    private List<AuthorityEntity> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Authority implements GrantedAuthority {
+public class AuthorityEntity implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class Authority implements GrantedAuthority {
     private String roleCode;
     private String roleDescription;
 
-    public Authority(String roleCode, String roleDescription) {
+    public AuthorityEntity(String roleCode, String roleDescription) {
         this.roleCode = roleCode;
         this.roleDescription = roleDescription;
     }
