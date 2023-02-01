@@ -1,5 +1,6 @@
-package com.ojas.Shopping.entity;
+package com.ojas.Shopping.security;
 
+import com.ojas.Shopping.entity.AuthorityEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String userName;
+    private String username;
     private String password;
     private Date createdAt;
     private Date updatedAt;
@@ -47,7 +48,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     @Override
