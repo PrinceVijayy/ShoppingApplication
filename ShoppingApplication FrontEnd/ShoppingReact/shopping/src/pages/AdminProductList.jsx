@@ -24,7 +24,7 @@ const AdminProductList = () => {
     });
   };
   const data = products.map((product) => {
-    return [
+    return ([
       product.name,
       product.price,
       product.quantity,
@@ -49,7 +49,7 @@ const AdminProductList = () => {
         </button>,
         <button className="btn btn-danger">Delete</button>,
       ],
-    ];
+    ])
   });
 
   const options = {
